@@ -1,6 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+
+<h1><%= title %></h1>
+
+<!-- Include errors safely -->
+<%- include('parials/errors.ejs') %>
+
+<!-- Message form -->
 <form method="POST" action="/new">
-    <h4><%= title %></h4>
-    <input type="text" name="user" placeholder="author" required>
-    <input type="text" name="text" placeholder="message" require>
-    <button type="submit">send</button>
+    <input type="text" name="user" placeholder="Author" required>
+    <input type="text" name="text" placeholder="Message" required>
+    <button type="submit">Send</button>
 </form>
+
+</body>
+</html>

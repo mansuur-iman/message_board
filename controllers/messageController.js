@@ -5,7 +5,7 @@ const alphaErr = 'Must contain only letters';
 const lengthErr = 'Must be between 1 and 10 characters long';
 
 const validateUser = [
-body('user').trim().isAlpha().withMessage(`user ${alphaErr}`).isLength({min:1, max: 10}).withMessage(`username ${lengthErr}`),
+body('user').trim().isAlpha().withMessage(`username ${alphaErr}`).isLength({min:1, max: 10}).withMessage(`username ${lengthErr}`),
 body('text').trim().isLength({min:1}).withMessage('Text required'),
 ];
 
@@ -42,7 +42,7 @@ const addMessage = [
         const errors = validationResult(req);
 
         if(!errors.isEmpty()){
-            return res.status(400).render('index',({errors: errors.array()}));
+            return res.status(400).render('form',({title: 'user form', errors: errors.array()}));
         };
 
         try{
@@ -60,7 +60,8 @@ const addMessage = [
 
 const showForm = (req,res)=>{
     res.render('form', {
-        title: 'user form'
+        title: 'user form',
+        errors:[]
     });
 };
 
