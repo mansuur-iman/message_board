@@ -1,4 +1,13 @@
 const db = require('../db/queries');
+const{body, validationResult} = require('express-validator');
+
+const alphaErr = 'Must contain only letters';
+const lengthErr = 'Must be between 1 and 10 characters long';
+
+const validateUser = [
+body('user').trim().isAlpha().withMessage(`user ${alphaErr}`).isLength({min:1, max: 10}).withMessage(`username ${lengthErr}`),
+body('text').trim().isLength({min:1}).withMessage('Text required'),
+];
 
 async function showMessage(req,res){
    try{ 
@@ -26,16 +35,28 @@ async function showMessageById(req,res){
     };
 };
 
-async function addMessage(req,res){
-    try{
-    const{user,text} = req.body;
-    await db.insertMessage(user,text);
-    res.redirect('/');
-    }
-    catch(err){
-        res.status(400).send('Both user and text are require, please fill it up.');
-    }
-};
+const addMessage = [
+    validateUser,
+    async (req,res)=>{
+
+        const errors = validationResult(req);
+
+        if(!errors.isEmpty()){
+            return res.status(400).json({errors: errors.array()});
+        };
+
+        try{
+           const {user,text} = req.body;
+           await db.insertMessage(user,text);
+           res.redirect('/');
+        }
+        catch(err){
+            console.error(err);
+            res.status(400).send('BOth user and text are require.')
+        };
+    },
+    
+];
 
 const showForm = (req,res)=>{
     res.render('form', {
