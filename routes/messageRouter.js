@@ -1,9 +1,13 @@
-const {Router} = require('express');
-const formRoute = Router();
-const showForm = require('../controllers/formController');
-const handleFormSubmit = require('../controllers/handleFormSubmit');
+const { Router } = require('express');
+const messageRouter = Router();
+const messageController = require('../controllers/messageController');
 
-formRoute.get('/', showForm);
-formRoute.post('/', handleFormSubmit);
+messageRouter.get('/', messageController.showMessage);
 
-module.exports = formRoute;
+messageRouter.get('/new', messageController.showForm);
+messageRouter.post('/new', messageController.addMessage);
+
+messageRouter.get('/message/:id', messageController.showMessageById);
+messageRouter.post('/message/:id/delete', messageController.deleteMessageById);
+
+module.exports = messageRouter;

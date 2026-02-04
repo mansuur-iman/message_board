@@ -3,20 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title><%= title %></title>
 </head>
 <body>
-  <h1><%= title %></h1>
+
+<h1><%= title %></h1>
+
 <ol>
   <% messages.forEach((message) => { %>
     <li>
-      <p>User: <%= message.user %></p>
+      <p>User: <%= message.username %></p>
       <p>Text: <%= message.text %></p>
+
+      <a href="/message/<%= message.id %>">open</a>
+
+      <form action="/message/<%= message.id %>/delete" method="POST">
+        <button type="submit" style="color:red">Delete</button>
+      </form>
     </li>
-    <a href="/messages/<%=message.id%>">open</a>
   <% }); %>
 </ol>
+
 <a href="/new">Add a message</a>
+
 </body>
 </html>
+
+
 
