@@ -2,6 +2,9 @@
 
 A lightweight message board web app where users can post, view, and delete messages — backed by PostgreSQL and rendered server-side with EJS.
 
+## LIVE DEMO
+https://message-board-1-kk5h.onrender.com
+
 ## Features
 
 - **Post Messages** — Submit a username and message via a simple form
