@@ -1,4 +1,4 @@
-# 💬 MiniMessageBoard
+#  MiniMessageBoard
 
 A lightweight message board web app where users can post, view, and delete messages — backed by PostgreSQL and rendered server-side with EJS.
 
@@ -31,6 +31,17 @@ https://message-board-1-kk5h.onrender.com
 - Node.js (v18+)
 - PostgreSQL
 
+  ## Routes
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/` | View all messages |
+| `GET` | `/new` | Show new message form |
+| `POST` | `/new` | Submit a new message |
+| `GET` | `/message/:id` | View a single message |
+| `POST` | `/message/:id/delete` | Delete a message |
+
+
 ### Installation
 
 1. Clone the repository:
@@ -59,33 +70,5 @@ https://message-board-1-kk5h.onrender.com
    node app.js
    ```
 
-## Routes
 
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/` | View all messages |
-| `GET` | `/new` | Show new message form |
-| `POST` | `/new` | Submit a new message |
-| `GET` | `/message/:id` | View a single message |
-| `POST` | `/message/:id/delete` | Delete a message |
 
-## Project Structure
-
-```
-.
-├── app.js                        # Express app entry point
-├── db/
-│   ├── pool.js                   # PostgreSQL connection pool
-│   ├── queries.js                # Database query functions
-│   └── seed.js                   # Table creation and seed data
-├── controllers/
-│   └── messageController.js      # Route handler logic
-├── routes/
-│   └── messageRouter.js          # Express router
-├── views/                        # EJS templates
-└── .env                          # Environment variables (not committed)
-```
-
-## License
-
-MIT
